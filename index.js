@@ -55,6 +55,15 @@ app.get("/footer1", (_, res) => {
   res.sendFile(resolve(__dirname, "./templates/view/footer", "footer1.html"));
 });
 
+app.get("/footer", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view/footer", "footer.html"));
+});
+
+//Article template 
+app.get("/article", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view/article", "article.html"));
+});
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -71,8 +80,9 @@ app.use("/api/v1/users", userRoutes);
 const { createFolder } = require("./src/utils/os");
 const {exectute} = require ("./src/utils/childprocess");
 const { connect } = require('http2');
+const { readFolder } = require("./src/utils/readFile");
 
-
+//create folder
 app.post("/api/createProject", (req, res) => {
     createFolder(req.body.project)
     res.send({
@@ -80,6 +90,13 @@ app.post("/api/createProject", (req, res) => {
     })
 })
 
+ //read the folder in the project folder
+ app.post("/api/readProject", (req, res) => {
+  readFolder(req.body.project)
+  res.send({
+      message: "Your project is reading"
+  })
+})
 
 // Server listen PORT
 server.listen(PORT, () => {
