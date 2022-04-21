@@ -95,7 +95,8 @@ app.post("/api/createProject", (req, res) => {
 
  //read the folder in the project folder
  app.get("/api/readProject", (req, res) => {
- readFolder();
+ 
+  readFolder();
  
   res.send({ 
       message: "Your project is reading"

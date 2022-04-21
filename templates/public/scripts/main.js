@@ -9,6 +9,7 @@ const loadComponents = () => {
     .then((res) => res.json())
     .then((data) => {
       for (item of data) {
+        console.log(item);
         appendComponentToList(item.components);
       }
     })
