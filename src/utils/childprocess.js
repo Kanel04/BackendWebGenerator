@@ -1,6 +1,6 @@
 const {exec} = require('child_process');
-
-const exectute = (commande)  =>{
+module.exports = {
+exectute (commande){
     return new Promise((resolve , reject) =>{
         exec(commande,(error, stdout,stderr) =>{
             if (error){
@@ -12,5 +12,6 @@ const exectute = (commande)  =>{
             return resolve(stdout);
         });
     })
-};
-module.exports = exectute;
+}
+}
+;
