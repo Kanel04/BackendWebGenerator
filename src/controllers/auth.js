@@ -44,13 +44,16 @@ exports.login = async (req, res, next) => {
 
 // @desc    Register user
 exports.register = async (req, res, next) => {
-    const { firstname, email, password } = req.body;
+    const { firstname,lastname, email, password } = req.body;
 
     const user = await User.create({
         firstname,
+        lastname,
         email,
         password,
     });
 
     createSendToken(user, 200, res);
+    console.log("user created");
+    
 };
