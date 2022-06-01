@@ -1,3 +1,4 @@
+
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
@@ -40,6 +41,7 @@ exports.login = async (req, res, next) => {
     }
 
     createSendToken(user, 200, res);
+   
 };
 
 // @desc    Register user
