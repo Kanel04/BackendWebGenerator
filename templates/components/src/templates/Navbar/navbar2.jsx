@@ -10,7 +10,7 @@ function NavbarTemplate() {
     <div className="text-white mt-3 ml-40">acceuil</div>
     <div className="text-white mt-3 ml-5">à propos</div>
     <div className="text-white mt-3 ml-5">contact</div>
-    
+    <div className="bg-white mt-3  h-11 ml-32 w-36 text-center items-center text-xl py-1 ">commencer</div>
       </div>
       
     </div>
