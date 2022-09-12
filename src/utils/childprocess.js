@@ -1,4 +1,4 @@
-var childProcess = require('child_process');
+const {exec} = require('child_process');
 
 const exectute = (commande)  =>{
     return new Promise((resolve , reject) =>{
@@ -13,3 +13,4 @@ const exectute = (commande)  =>{
         });
     })
 };
+module.exports = exectute;
