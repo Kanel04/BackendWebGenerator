@@ -26,19 +26,7 @@ io.on("connection", (socket) => {
     });
   });
   
-// Routes 
-app.get("/", (_, res) => {
-    res.sendFile(resolve(__dirname, "./templates/view", "index.html"));
-  });
 
-app.get("/components", (_, res) => {
-    res.send(loadComponentList());
-});
-
-app.get("/project", (_, res) => {
-    res.sendFile(resolve(__dirname, "./templates/view", "project.html"));
-  });
-  
   
 
 // Middlewares

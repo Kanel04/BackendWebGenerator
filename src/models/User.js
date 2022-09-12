@@ -13,13 +13,11 @@ const UserSchema = new mongoose.Schema({
     },
     
     email: {
-        type: String,
-        required: [true, "Entrer votre email"],
-        unique: true,
-        match: [
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            "Please provide a valid email",
-        ],
+       type: String,
+       required:[true,"Votre Email svp"],
+       unique: true,
+       validate:[validator.isEmail , "Entre un Email SVP"],
+
     },
     password: {
         type: String,
@@ -35,6 +33,14 @@ const UserSchema = new mongoose.Schema({
     organization_id: {
         type: mongoose.Schema.ObjectId,
         ref: "Organization",
+    },
+    passwordChangedAt: Date ,
+    passwordResetToken: String ,
+    passwordResetExpires: Date ,
+    active:{
+      type: Boolean,
+      default: true ,
+      select: false ,
     },
 });
 
