@@ -4,8 +4,42 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "config.env" });
 const cors = require("cors");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+const env = require("env-var");
+const PORT = env.get("PORT").required().asInt();
+const { resolve } = require("path");
 const connectDB = require("./src/config/db");
+
+const { loadComponentList } = require("./src/modules/frontend");
+
+// Middlewares components
+app.use(express.static("./templates/public"));
+
+//user connected from socket.io
+io.on("connection", (socket) => {
+    console.log("a user connected");
+    socket.on("add-component", (data) => {
+      io.emit("receive-component", data);
+    });
+  });
+  
+// Routes 
+app.get("/", (_, res) => {
+    res.sendFile(resolve(__dirname, "./templates/view", "index.html"));
+  });
+
+app.get("/components", (_, res) => {
+    res.send(loadComponentList());
+});
+
+app.get("/project", (_, res) => {
+    res.sendFile(resolve(__dirname, "./templates/view", "project.html"));
+  });
+  
+  
 
 // Middlewares
 app.use(cors());
@@ -22,11 +56,7 @@ app.use("/api/v1/users", userRoutes);
 
 const { createFolder } = require("./src/utils/os");
 const { connect } = require('http2');
-app.get("/api/createProject", (req, res) => {
-    res.send({
-        hello: "World"
-    })
-})
+
 
 app.post("/api/createProject", (req, res) => {
     createFolder(req.body.project)
@@ -36,12 +66,13 @@ app.post("/api/createProject", (req, res) => {
 })
 
 
-const server = app.listen(PORT, () => {
-    console.log(`Notre seveur démarre sur localhost:${PORT}`);
+// Server listen PORT
+server.listen(PORT, () => {
+    console.log("listening on *:", PORT);
     connectDB();
-});
+  });
 
 process.on("unhandledRejection", (err, promise) => {
-    console.log(`Logged Error: ${err.message}`);
-    server.close(() => process.exit(1));
+console.log(`Logged Error: ${err.message}`);
+   server.close(() => process.exit(1));
 });

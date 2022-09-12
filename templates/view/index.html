@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav class="py-3 px-4 bg-gray-600">
+      <button class="rounded-md px-4 py-3 bg-pink-600 text-white font-bold">
+        Create a component
+      </button>
+    </nav>
+    <main class="grid grid-cols-5 mt-4 p-4">
+      <aside>
+        <h1 id="component-text" class="font-bold">Components List</h1>
+        <ul id="components_list" class="my-4 grid grid-cols-1 gap-8"></ul>
+      </aside>
+      <div class="col-span-3">
+        <h1 class="font-bold">Page preview</h1>
+        <ul class="flex">
+          <li class="text-blue-600"><a href="#" id="mobile">Mobile View</a></li>
+          <li class="mx-4 text-blue-600">
+            <a href="#" id="tablet">Tablet View</a>
+          </li>
+          <li class="text-blue-600">
+            <a href="#" id="desktop">Desktop View</a>
+          </li>
+        </ul>
+        <iframe
+          src="./project"
+          frameborder="0"
+          class="border-2 w-full p-2 min-h-[70vh]"
+        ></iframe>
+      </div>
+      <div class="px-4">
+        <h1 class="font-bold">Tree Widget</h1>
+        <ul id="treelist"></ul>
+      </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../public/scripts/main.js"></script>
+  </body>
+</html>
