@@ -2,15 +2,16 @@ const nodemailer = require("nodemailer");
 
 const sendEmail = (options) => {
     const transporter = nodemailer.createTransport({
-        service: process.env.EMAIL_SERVICE,
+        host: "smtp.mailtrap.io",
+        port: 2525,
         auth: {
-            user: process.env.EMAIL_USERNAME,
-            pass: process.env.EMAIL_PASSWORD,
+            user: "57f8eb27b26f3c",
+            pass: "ce6f31eaa11efd",
         },
     });
 
     const mailOptions = {
-        from: process.env.EMAIL_FROM,
+        from: "smtp.mailtrap.io",
         to: options.to,
         subject: options.subject,
         html: options.text,
