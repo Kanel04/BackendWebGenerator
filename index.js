@@ -26,8 +26,20 @@ io.on("connection", (socket) => {
     });
   });
   
+// loadinding components
+app.get("/components", (_, res) => {
+  res.send(loadComponentList());
+});
 
-  
+//home 
+app.get("/", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view", "index.html"));
+});
+
+//components 
+app.get("/project", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view", "project.html"));
+});
 
 // Middlewares
 app.use(cors());
@@ -43,6 +55,7 @@ app.use("/api/v1/users", userRoutes);
 
 
 const { createFolder } = require("./src/utils/os");
+const {exectute} = require ("./src/utils/childprocess");
 const { connect } = require('http2');
 
 
