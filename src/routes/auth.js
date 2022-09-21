@@ -1,4 +1,5 @@
 const express = require('express');
+const authController = require("../controllers/auth");
 const { 
     register,
      login,
@@ -19,8 +20,7 @@ router
     .route('/forgotpassword')
     .post(forgotPassword);
 
-    router
-    .route('/resetpassword')
-    .put(resetPassword);
+router
+.patch("/resetpassword/:token",authController.resetPassword);
 
 module.exports = router;
