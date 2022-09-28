@@ -41,6 +41,20 @@ app.get("/project", (_, res) => {
   res.sendFile(resolve(__dirname, "./templates/view", "project.html"));
 });
 
+//NavBar template
+app.get("/navbar", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view/navbar", "nav.html"));
+});
+
+app.get("/navbar1", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view/navbar", "navBar.html"));
+});
+
+//Footer template
+app.get("/footer1", (_, res) => {
+  res.sendFile(resolve(__dirname, "./templates/view/footer", "footer1.html"));
+});
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
