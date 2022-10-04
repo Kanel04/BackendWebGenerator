@@ -12,7 +12,7 @@ const signToken = (id) => {
     });
 };
 
-const createSendToken = (user, statusCode, res) => {
+ const createSendToken = (user, statusCode, res) => {
     const token = signToken(user._id);
 
     // remove the password from the output

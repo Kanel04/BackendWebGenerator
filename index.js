@@ -15,6 +15,11 @@ const connectDB = require("./src/config/db");
 
 const { loadComponentList } = require("./src/modules/frontend");
 
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
+
 // Middlewares components
 app.use(express.static("./templates/public"));
 
@@ -64,9 +69,7 @@ app.get("/article", (_, res) => {
   res.sendFile(resolve(__dirname, "./templates/view/article", "article.html"));
 });
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
+
 
 // Routes
 const authRoutes = require("./src/routes/auth");
@@ -92,10 +95,9 @@ app.post("/api/createProject", (req, res) => {
 
  //read the folder in the project folder
  app.get("/api/readProject", (req, res) => {
-const projects = readFolder();
-console.log(projects);
+ readFolder();
+ 
   res.send({ 
-      data: projects,
       message: "Your project is reading"
   })
 })
